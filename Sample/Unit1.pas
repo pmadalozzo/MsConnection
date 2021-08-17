@@ -44,23 +44,27 @@ implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  if FMsConn
-       .Component
-         .Connection
-          .Close
-           .Clear
-            .SQL('select * from enti ')
-           .Open
-          .isEmpty then
-   begin
-     showmessage('Nenhum resultado');
-   end;
+  FMsConn
+   .Component
+     .Connection
+      .Close
+       .Clear
+        .SQL('select * from enti ')
+       .Open;
+
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   if not Assigned(FMsConn) then
-    FMsConn := TMSConnection.New;
+   begin
+     FMsConn :=
+       TMSConnection
+        .New
+         .This
+          .Host:= 'localhost';
+
+   end;
 
   FIndex:= FMsConn.Component.Connection.Connected;
   DataSource1.DataSet:= FMsConn.Component.Connection.DataSet;
