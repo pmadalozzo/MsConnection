@@ -1,0 +1,11 @@
+{
+	"name": "Sample",
+	"description": "",
+	"version": "1.0.0",
+	"homepage": "",
+	"mainsrc": "./",
+	"projects": [],
+	"dependencies": {
+		"https://github.com/pmadalozzo/localcache4d": "^1.0.4"
+	}
+}

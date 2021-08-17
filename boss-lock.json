@@ -1,0 +1,22 @@
+{
+	"hash": "d41d8cd98f00b204e9800998ecf8427e",
+	"updated": "2021-08-17T10:42:18.3128802-03:00",
+	"installedModules": {
+		"github.com/pmadalozzo/localcache4d": {
+			"name": "localcache4d",
+			"version": "1.0.4",
+			"hash": "cf3a940e9450867babe76e165f6caf5e",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		},
+		"https://github.com/pmadalozzo/msloading": {
+			"name": "msloading",
+			"version": "1.0.2",
+			"hash": "ecf0473e1beaac3f0327854689004481",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		}
+	}
+}
