@@ -33,7 +33,8 @@ type
      function Connected : integer;
      function ExecSQL : iComponentsConnections;
      function IndexConn : integer;
-     function Open : iComponentsConnections;
+     function Open : iComponentsConnections; overload;
+     function Open(aMessage : string) : iComponentsConnections; overload;
      function SQL (aValue : string) : iComponentsConnections;
      function Isempty : boolean;
      function &End : iMsConnection;
@@ -150,6 +151,12 @@ end;
 class function TComponentsUnidac.New(Parent : iMsConnection) : iComponentsConnections;
 begin
   Result:= Self.Create(Parent);
+end;
+
+function TComponentsUnidac.Open(aMessage: string): iComponentsConnections;
+begin
+  Result:= Self;
+  FQuery.Open;
 end;
 
 function TComponentsUnidac.Open: iComponentsConnections;

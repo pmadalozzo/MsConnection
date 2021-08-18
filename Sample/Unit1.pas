@@ -41,8 +41,6 @@ implementation
 {$R *.dfm}
 
 uses
-  Service,
-  MsConnection.Interfaces,
   MsConnection;
 
 

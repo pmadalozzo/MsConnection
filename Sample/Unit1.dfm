@@ -64,7 +64,7 @@ object Form1: TForm1
     TabOrder = 5
   end
   object DataSource1: TDataSource
-    Left = 160
-    Top = 32
+    Left = 256
+    Top = 96
   end
 end
