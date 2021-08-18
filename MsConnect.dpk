@@ -35,13 +35,13 @@ requires
   FireDAC,
   FireDACCommonDriver,
   FireDACCommon,
-  FireDACPgDriver;
+  FireDACPgDriver,
+  vclimg;
 
 contains
   Model.Components.Connections.Firedac in 'src\Model\Connections\Model.Components.Connections.Firedac.pas',
   Model.Components.Factory in 'src\Model\Model.Components.Factory.pas',
   Model.Components.Interfaces in 'src\Model\Model.Components.Interfaces.pas',
-  Model.Components.Connections.Unidac in 'src\Model\Connections\Model.Components.Connections.Unidac.pas',
   Model.Components.Connections.Interfaces in 'src\Model\Connections\Model.Components.Connections.Interfaces.pas',
   MsRegister in 'src\Register\MsRegister.pas',
   MsConnection in 'src\MsConnection.pas',

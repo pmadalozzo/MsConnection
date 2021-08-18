@@ -4,7 +4,7 @@ interface
 
 uses
   MsConnection.Interfaces,
-  Model.Components.Interfaces, MsRegister;
+  Model.Components.Interfaces;
 
 type
   TMsConnection = class(TInterfacedObject, iMsConnection)
@@ -21,13 +21,13 @@ type
       function RowsetSize(aValue : integer = 50) : iMsConnection;
       function Host(aValue : string) : iMsConnection;
       function Port(aValue : string) : iMsConnection;
-      function This : TMsRegister;
+      function This : iRegister;
   end;
 
 implementation
 
 uses
-  Model.Components.Factory;
+  Model.Components.Factory, MsRegister;
 
 { TMsConnection }
 
@@ -73,9 +73,9 @@ begin
   FRowsetSize:= aValue;
 end;
 
-function TMsConnection.This: TMsRegister;
+function TMsConnection.This: iRegister;
 begin
-  Result:= aMsRegister;
+  Result:= TMsRegister.Create(Self);
 end;
 
 end.

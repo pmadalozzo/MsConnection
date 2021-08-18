@@ -2,9 +2,15 @@ unit MsRegister;
 
 interface
 
+uses
+  MsConnection.Interfaces,
+  MsConnection;
+
 type
-  TMsRegister = class
+  TMsRegister = class(Tinterfacedobject, iRegister)
     private
+      [weak]
+      FParent : TMsConnection;
       FDriver: string;
       FPort: string;
       FPass: string;
@@ -27,8 +33,9 @@ type
       function GetPort: string;
       function GetUser: string;
     public
-      constructor Create;
+      constructor Create(Parent : TMsConnection);
       destructor Destroy; override;
+      function &End : iMsConnection;
 
       property Host : string read GetHost write SetHost;
       property Port : string read GetPort write SetPort;
@@ -50,17 +57,25 @@ uses
   LocalCache4D,
   System.SysUtils;
 
-constructor TMsRegister.Create;
+function TMsRegister.&End: iMsConnection;
 begin
-  LocalCache.LoadDatabase('D:\Componentes\Madalozzo\MsConnection\Config\MsConfig.lc4');
+  Result:= FParent;
+end;
 
-  FHost:= LocalCache.Instance('Database').GetItem('host');
-  FPort:= LocalCache.Instance('Database').GetItem('port');
-  FUser:= LocalCache.Instance('Database').GetItem('user');
-  FPass:= LocalCache.Instance('Database').GetItem('pass');
-  FDatabase:= LocalCache.Instance('Database').GetItem('database');
-  FDriver:= LocalCache.Instance('Database').GetItem('driver');
-  FDll:= LocalCache.Instance('Database').GetItem('dll');
+constructor TMsRegister.Create(Parent : TMsConnection);
+begin
+  if not Assigned(FParent) then
+    FParent:= Parent;
+
+//  LocalCache.LoadDatabase('D:\Componentes\Madalozzo\MsConnection\Config\MsConfig.lc4');
+//
+//  FHost:= LocalCache.Instance('Database').GetItem('host');
+//  FPort:= LocalCache.Instance('Database').GetItem('port');
+//  FUser:= LocalCache.Instance('Database').GetItem('user');
+//  FPass:= LocalCache.Instance('Database').GetItem('pass');
+//  FDatabase:= LocalCache.Instance('Database').GetItem('database');
+//  FDriver:= LocalCache.Instance('Database').GetItem('driver');
+//  FDll:= LocalCache.Instance('Database').GetItem('dll');
 end;
 
 destructor TMsRegister.Destroy;
@@ -159,11 +174,5 @@ procedure TMsRegister.SetUser(const Value: string);
 begin
   FUser := Value;
 end;
-
-initialization
-  aMsRegister := TMsRegister.Create;
-
-finalization
-  aMsRegister.Free;
 
 end.

@@ -24,8 +24,8 @@ implementation
 { TModelComponentsConnectionFactory }
 
 uses
-  Model.Components.Connections.Firedac,
-  Model.Components.Connections.Unidac;
+  Model.Components.Connections.Firedac;
+//  Model.Components.Connections.Unidac;
 
 function TModelComponentsConnectionFactory.Connection: iModelComponentsConnections;
 begin
