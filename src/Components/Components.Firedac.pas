@@ -44,6 +44,7 @@ type
       function Close : iComponentsConnections;
       function Clear : iComponentsConnections;
       function DataSet : TDataSet;
+      function DataSource(aDataSource : TDataSource) : iComponentsConnections;
       function Disconnect (aIndexConn : integer) : iComponentsConnections;
       function Connected : integer;
       function ExecSQL : iComponentsConnections;
@@ -119,8 +120,8 @@ begin
     FConnList.Items[FIndexConn].Params.Password:= FParent.Credential.Pass;
     FConnList.Items[FIndexConn].Params.DriverID:= FParent.Credential.Driver;
     FConnList.Items[FIndexConn].Params.Add('LockingMode=Normal');
-//    if aRowsetSize > 0 then
-//      FConnList.Items[FIndexConn].FetchOptions.RowsetSize:= aRowsetSize;
+    if FParent.Credential.RowsetSize > 0 then
+      FConnList.Items[FIndexConn].FetchOptions.RowsetSize:= FParent.Credential.RowsetSize;
     FConnList.Items[FIndexConn].Connected;
 
   finally
@@ -132,6 +133,13 @@ end;
 function TComponentsFiredac.DataSet: TDataSet;
 begin
   Result:= FQuery;
+end;
+
+function TComponentsFiredac.DataSource(
+  aDataSource: TDataSource): iComponentsConnections;
+begin
+  result:= Self;
+  aDataSource.DataSet:= FQuery;
 end;
 
 destructor TComponentsFiredac.Destroy;

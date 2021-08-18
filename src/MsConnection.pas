@@ -3,7 +3,8 @@ unit MsConnection;
 interface
 
 uses
-  MsConnection.Interfaces;
+  MsConnection.Interfaces,
+  Vcl.Forms;
 
 type
   TMsConnection = class(TInterfacedObject, iMsConnection)
@@ -21,6 +22,9 @@ type
 
       function RowsetSize(aValue : integer = 50) : iMsConnection;
   end;
+
+var
+  vMsConnection : iMsConnection;
 
 implementation
 
@@ -58,9 +62,12 @@ begin
   inherited;
 end;
 
-class function TMsConnection.New: iMsConnection;
+class function TMsConnection.New : iMsConnection;
 begin
-  Result:= Self.Create;
+  if not Assigned(vMsConnection) then
+    vMsConnection := Self.Create;
+
+  Result := vMsConnection;
 end;
 
 function TMsConnection.RowsetSize(aValue: integer): iMsConnection;

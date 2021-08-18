@@ -12,8 +12,8 @@
 		},
 		"https://github.com/pmadalozzo/msconnection": {
 			"name": "msconnection",
-			"version": "1.0.0",
-			"hash": "148bc38284107f3f021c0b286f1469aa",
+			"version": "1.0.1",
+			"hash": "8deacc5eb5c3826771ae3ccd2fc2e96e",
 			"artifacts": {},
 			"failed": false,
 			"changed": false

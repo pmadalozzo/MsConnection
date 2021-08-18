@@ -13,8 +13,6 @@ uses
   Vcl.Forms,
   Vcl.Dialogs,
   Vcl.StdCtrls,
-  MsConnection,
-  MsConnection.Interfaces,
   Data.DB,
   Vcl.Grids,
   Vcl.DBGrids;
@@ -24,11 +22,12 @@ type
     Button1: TButton;
     DataSource1: TDataSource;
     DBGrid1: TDBGrid;
-    procedure FormCreate(Sender: TObject);
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
     procedure Button1Click(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
   private
-    FMsConn : iMsConnection;
     FIndex : integer;
   public
     { Public declarations }
@@ -41,32 +40,22 @@ implementation
 
 {$R *.dfm}
 
+uses
+  Service,
+  MsConnection.Interfaces,
+  MsConnection;
+
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  FMsConn
-   .Connection
-    .Close
-     .Clear
-      .SQL('select * from enti ')
-     .Open;
-
-end;
-
-procedure TForm1.FormCreate(Sender: TObject);
-begin
-  if not Assigned(FMsConn) then
-     FMsConn := TMSConnection.New;
-
-//  FIndex:= FMsConn.Connection.Connected;
-//  DataSource1.DataSet:= FMsConn.Connection.DataSet;
-end;
-
-procedure TForm1.FormDestroy(Sender: TObject);
-begin
-  FMsConn
+  TMsConnection
+   .New
     .Connection
-     .Disconnect(FIndex);
+    .DataSource(DataSource1)
+     .Close
+      .Clear
+       .SQL('select * from enti ')
+      .Open;
 end;
 
 end.

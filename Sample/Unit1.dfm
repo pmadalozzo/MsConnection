@@ -11,8 +11,6 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
-  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
   object Button1: TButton
@@ -27,7 +25,7 @@ object Form1: TForm1
   object DBGrid1: TDBGrid
     Left = 8
     Top = 39
-    Width = 706
+    Width = 561
     Height = 347
     DataSource = DataSource1
     TabOrder = 1
@@ -36,6 +34,34 @@ object Form1: TForm1
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+  end
+  object Edit1: TEdit
+    Left = 584
+    Top = 39
+    Width = 121
+    Height = 21
+    TabOrder = 2
+  end
+  object Edit2: TEdit
+    Left = 584
+    Top = 66
+    Width = 121
+    Height = 21
+    TabOrder = 3
+  end
+  object Edit3: TEdit
+    Left = 584
+    Top = 95
+    Width = 121
+    Height = 21
+    TabOrder = 4
+  end
+  object Edit4: TEdit
+    Left = 584
+    Top = 122
+    Width = 121
+    Height = 21
+    TabOrder = 5
   end
   object DataSource1: TDataSource
     Left = 160

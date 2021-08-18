@@ -19,13 +19,14 @@ implementation
 
 uses
   MsConnection,
-  LocalCache4D, System.SysUtils;
+  LocalCache4D,
+  System.SysUtils;
 
 { TService }
 
 constructor TService.Create;
 begin
-  //RegisterMsConnection;
+  RegisterMsConnection;
 end;
 
 destructor TService.Destroy;
@@ -47,8 +48,9 @@ begin
       .Pass(LocalCache.Instance('Database').GetItem('pass'))
       .Database(LocalCache.Instance('Database').GetItem('database'))
       .Driver(LocalCache.Instance('Database').GetItem('driver'))
-      .Dll(LocalCache.Instance('Database').GetItem('dll'));
-
+      .Dll(LocalCache.Instance('Database').GetItem('dll'))
+      .RowsetSize(LocalCache.Instance('Database').GetItem('rowsetsize'))
+     .&End;
 end;
 
 initialization

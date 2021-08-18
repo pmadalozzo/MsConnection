@@ -34,6 +34,8 @@ type
     function Port : string; overload;
     function Driver(aValue : string) : iMsCredential; overload;
     function Driver : string; overload;
+    function RowsetSize(aValue : string) : iMsCredential; overload;
+    function RowsetSize : integer; overload;
   end;
 
   iComponentsConnections = interface
@@ -43,6 +45,7 @@ type
    function Close : iComponentsConnections;
    function Clear : iComponentsConnections;
    function DataSet : TDataSet;
+   function DataSource(aDataSource : TDataSource) : iComponentsConnections;
    function Disconnect (aIndexConn : integer) : iComponentsConnections;
    function Connected : integer;
    function ExecSQL : iComponentsConnections;

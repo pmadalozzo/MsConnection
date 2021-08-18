@@ -17,6 +17,7 @@ type
       FDll: string;
       FHost: string;
       FUser: string;
+      FLimit : integer;
     public
       Constructor Create(Parent : iMsConnection);
       Destructor Destroy; override;
@@ -35,6 +36,8 @@ type
       function Port : string; overload;
       function Driver(aValue : string) : iMsCredential; overload;
       function Driver : string; overload;
+      function RowsetSize(aValue : string) : iMsCredential; overload;
+      function RowsetSize : integer; overload;
       function &End : iMsConnection;
   end;
 
@@ -103,6 +106,17 @@ end;
 function TMsCredential.Host: string;
 begin
   Result:= FHost;
+end;
+
+function TMsCredential.RowsetSize: integer;
+begin
+  result:= FLimit;
+end;
+
+function TMsCredential.RowsetSize(aValue: string): iMsCredential;
+begin
+  Result:= Self;
+  FLimit:= strtoint(aValue);
 end;
 
 class Function TMsCredential.New(Parent : iMsConnection) : iMSCredential;

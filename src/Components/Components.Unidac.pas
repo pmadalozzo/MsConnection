@@ -28,6 +28,7 @@ type
      function Close : iComponentsConnections;
      function Clear : iComponentsConnections;
      function DataSet : TDataSet;
+     function DataSource(aDataSource : TDataSource) : iComponentsConnections;
      function Disconnect (aIndexConn : integer) : iComponentsConnections;
      function Connected : integer;
      function ExecSQL : iComponentsConnections;
@@ -90,12 +91,12 @@ begin
     FConnList.Add(TUniConnection.Create(nil));
     FIndexConn := Pred(FConnList.Count);
 
-//    FConnList.Items[FIndexConn].Server      := aMsRegister.Host;
-//    FConnList.Items[FIndexConn].Port        := strtoint(aMsRegister.Port);
-//    FConnList.Items[FIndexConn].Database    := aMsRegister.Database;
-//    FConnList.Items[FIndexConn].Username    := aMsRegister.User;
-//    FConnList.Items[FIndexConn].Password    := aMsRegister.Pass;
-//    FConnList.Items[FIndexConn].ProviderName:= aMsRegister.Driver;
+    FConnList.Items[FIndexConn].Server      := FParent.Credential.Host;
+    FConnList.Items[FIndexConn].Port        := strtoint(FParent.Credential.Port);
+    FConnList.Items[FIndexConn].Database    := FParent.Credential.Database;
+    FConnList.Items[FIndexConn].Username    := FParent.Credential.User;
+    FConnList.Items[FIndexConn].Password    := FParent.Credential.Pass;
+    FConnList.Items[FIndexConn].ProviderName:= FParent.Credential.Driver;
     FConnList.Items[FIndexConn].Connected;
 
   finally
@@ -107,6 +108,13 @@ end;
 function TComponentsUnidac.DataSet: TDataSet;
 begin
   Result:= FQuery;
+end;
+
+function TComponentsUnidac.DataSource(
+  aDataSource: TDataSource): iComponentsConnections;
+begin
+  result:= self;
+  aDataSource.DataSet:= FQuery;
 end;
 
 destructor TComponentsUnidac.Destroy;
