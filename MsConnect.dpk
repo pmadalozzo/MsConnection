@@ -39,12 +39,10 @@ requires
   vclimg;
 
 contains
-  Model.Components.Connections.Firedac in 'src\Model\Connections\Model.Components.Connections.Firedac.pas',
-  Model.Components.Factory in 'src\Model\Model.Components.Factory.pas',
-  Model.Components.Interfaces in 'src\Model\Model.Components.Interfaces.pas',
-  Model.Components.Connections.Interfaces in 'src\Model\Connections\Model.Components.Connections.Interfaces.pas',
-  MsRegister in 'src\Register\MsRegister.pas',
+  Components.Firedac in 'src\Components\Components.Firedac.pas',
   MsConnection in 'src\MsConnection.pas',
-  MsConnection.Interfaces in 'src\MsConnection.Interfaces.pas';
+  MsConnection.Interfaces in 'src\MsConnection.Interfaces.pas',
+  MsCredential in 'src\MsCredential.pas',
+  Components.Unidac in 'src\Components\Components.Unidac.pas';
 
 end.

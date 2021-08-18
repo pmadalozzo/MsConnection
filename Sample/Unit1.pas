@@ -45,42 +45,26 @@ implementation
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   FMsConn
-   .Component
-     .Connection
-      .Close
-       .Clear
-        .SQL('select * from enti ')
-       .Open;
+   .Connection
+    .Close
+     .Clear
+      .SQL('select * from enti ')
+     .Open;
 
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   if not Assigned(FMsConn) then
-   begin
-     FMsConn :=
-       TMSConnection
-        .New
-         .This
-          .Host('localhost')
-          .Port(5433)
-          .User('postgres')
-          .Dll('libpq.dll')
-          .Database('flat')
-          .Driver('PG')
-         .&End;
+     FMsConn := TMSConnection.New;
 
-
-   end;
-
-  FIndex:= FMsConn.Component.Connection.Connected;
-  DataSource1.DataSet:= FMsConn.Component.Connection.DataSet;
+//  FIndex:= FMsConn.Connection.Connected;
+//  DataSource1.DataSet:= FMsConn.Connection.DataSet;
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
   FMsConn
-   .Component
     .Connection
      .Disconnect(FIndex);
 end;

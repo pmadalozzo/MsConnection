@@ -3,45 +3,53 @@ unit MsConnection;
 interface
 
 uses
-  MsConnection.Interfaces,
-  Model.Components.Interfaces;
+  MsConnection.Interfaces;
 
 type
   TMsConnection = class(TInterfacedObject, iMsConnection)
     private
-      FComponent : iModelComponentsFactory;
+      FCredential : iMsCredential;
+      FConnection : iComponentsConnections;
+
       FRowsetSize : integer;
-      FHost : string;
-      FPort : string;
     public
       constructor Create;
       destructor Destroy; override;
       class function New : iMsConnection;
-      function Component : iModelComponentsFactory;
+      function Credential : iMsCredential;
+      function Connection : iComponentsConnections;
+
       function RowsetSize(aValue : integer = 50) : iMsConnection;
-      function Host(aValue : string) : iMsConnection;
-      function Port(aValue : string) : iMsConnection;
-      function This : iRegister;
   end;
 
 implementation
 
 uses
-  Model.Components.Factory, MsRegister;
+  MsCredential,
+  Components.Firedac,
+  Components.Unidac;
 
 { TMsConnection }
 
-function TMsConnection.Component: iModelComponentsFactory;
+function TMsConnection.Connection: iComponentsConnections;
 begin
-  if not Assigned(FComponent) then
-    FComponent:= TModelComponentsConnectionFactory.New.RowsetSize(FRowsetSize);
+  if not Assigned(FConnection) then
+    FConnection:= TComponentsFiredac.New(Self);
 
-  Result:= FComponent;
+  Result:= FConnection;
 end;
 
 constructor TMsConnection.Create;
 begin
 
+end;
+
+function TMsConnection.Credential: iMsCredential;
+begin
+  if not Assigned(FCredential) then
+    FCredential:= TMsCredential.New(Self);
+
+  Result:= FCredential;
 end;
 
 destructor TMsConnection.Destroy;
@@ -50,21 +58,9 @@ begin
   inherited;
 end;
 
-function TMsConnection.Host(aValue: string): iMsConnection;
-begin
-  Result:= Self;
-  Fhost:= aValue;
-end;
-
 class function TMsConnection.New: iMsConnection;
 begin
   Result:= Self.Create;
-end;
-
-function TMsConnection.Port(aValue: string): iMsConnection;
-begin
-  Result:= Self;
-  FPort:= aValue;
 end;
 
 function TMsConnection.RowsetSize(aValue: integer): iMsConnection;
@@ -73,9 +69,5 @@ begin
   FRowsetSize:= aValue;
 end;
 
-function TMsConnection.This : iRegister;
-begin
-  Result:= TMsRegister.Create(Self);
-end;
 
 end.

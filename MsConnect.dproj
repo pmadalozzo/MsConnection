@@ -125,13 +125,11 @@
         <DCCReference Include="FireDACCommon.dcp"/>
         <DCCReference Include="FireDACPgDriver.dcp"/>
         <DCCReference Include="vclimg.dcp"/>
-        <DCCReference Include="src\Model\Connections\Model.Components.Connections.Firedac.pas"/>
-        <DCCReference Include="src\Model\Model.Components.Factory.pas"/>
-        <DCCReference Include="src\Model\Model.Components.Interfaces.pas"/>
-        <DCCReference Include="src\Model\Connections\Model.Components.Connections.Interfaces.pas"/>
-        <DCCReference Include="src\Register\MsRegister.pas"/>
+        <DCCReference Include="src\Components\Components.Firedac.pas"/>
         <DCCReference Include="src\MsConnection.pas"/>
         <DCCReference Include="src\MsConnection.Interfaces.pas"/>
+        <DCCReference Include="src\MsCredential.pas"/>
+        <DCCReference Include="src\Components\Components.Unidac.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -173,7 +171,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\..\..\..\Public\Documents\Embarcadero\Studio\20.0\Bpl\MsConnect.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\21.0\Bpl\MsConnect.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>MsConnect.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
