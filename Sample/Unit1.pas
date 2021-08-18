@@ -63,7 +63,12 @@ begin
         .New
          .This
           .Host('localhost')
-         .&End
+          .Port(5433)
+          .User('postgres')
+          .Dll('libpq.dll')
+          .Database('flat')
+          .Driver('PG')
+         .&End;
 
 
    end;

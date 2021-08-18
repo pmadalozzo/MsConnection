@@ -73,7 +73,7 @@ begin
   FRowsetSize:= aValue;
 end;
 
-function TMsConnection.This: iRegister;
+function TMsConnection.This : iRegister;
 begin
   Result:= TMsRegister.Create(Self);
 end;
