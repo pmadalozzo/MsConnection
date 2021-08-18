@@ -62,7 +62,9 @@ begin
        TMSConnection
         .New
          .This
-          .Host:= 'localhost';
+          .Host('localhost')
+         .&End
+
 
    end;
 
