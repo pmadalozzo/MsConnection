@@ -50,8 +50,9 @@ type
    function Connected : integer;
    function ExecSQL : iComponentsConnections;
    function IndexConn : integer;
-   function Open : iComponentsConnections; overload;
-   function Open(aMessage : string) : iComponentsConnections; overload;
+   function LoadingMessage(aValue : string) : iComponentsConnections;
+   function UseOpenLoading(aValue : boolean) : iComponentsConnections;
+   function Open : iComponentsConnections;
    function SQL (aValue : string) : iComponentsConnections;
    function Isempty : boolean;
    function &End : iMsConnection;

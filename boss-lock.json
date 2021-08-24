@@ -5,15 +5,15 @@
 		"github.com/pmadalozzo/localcache4d": {
 			"name": "localcache4d",
 			"version": "1.0.4",
-			"hash": "78a7747cc7f2f79822d67610672800a5",
+			"hash": "4795e9608a60d20beb28bf7eb776556a",
 			"artifacts": {},
 			"failed": false,
 			"changed": false
 		},
 		"https://github.com/pmadalozzo/msloading": {
 			"name": "msloading",
-			"version": "1.0.3",
-			"hash": "d03ddb4cce286755d124d341aeefb07f",
+			"version": "1.0.5",
+			"hash": "604ee0167fd2da5ad0fd8ccd77466607",
 			"artifacts": {},
 			"failed": false,
 			"changed": false

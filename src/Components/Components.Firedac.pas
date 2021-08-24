@@ -35,6 +35,9 @@ type
       FIndexConn : integer;
       FConnList : TObjectList<TFDConnection>;
       FDriver: TFDPhysPgDriverLink;
+
+      FMessageLoading : string;
+      FUseLoading : boolean;
     public
       constructor Create(Parent : iMsConnection);
       destructor Destroy; override;
@@ -49,8 +52,9 @@ type
       function Connected : integer;
       function ExecSQL : iComponentsConnections;
       function IndexConn : integer;
-      function Open : iComponentsConnections; overload;
-      function Open(aMessage : string) : iComponentsConnections; overload;
+      function LoadingMessage(aValue : string) : iComponentsConnections;
+      function UseOpenLoading(aValue : boolean) : iComponentsConnections;
+      function Open : iComponentsConnections;
       function SQL (aValue : string) : iComponentsConnections;
       function Isempty : boolean;
       function &End : iMsConnection;
@@ -174,27 +178,42 @@ begin
   result:= FQuery.IsEmpty;
 end;
 
+function TComponentsFiredac.LoadingMessage(
+  aValue: string): iComponentsConnections;
+begin
+  Result:= Self;
+  FMessageLoading:= aValue;
+end;
+
 class function TComponentsFiredac.New(Parent : iMsConnection): iComponentsConnections;
 begin
   Result:= Self.Create(Parent);
 end;
 
-function TComponentsFiredac.Open(aMessage: string): iComponentsConnections;
-begin
-  Result:= Self;
-  FQuery.OpenLoading(aMessage);
-end;
-
 function TComponentsFiredac.Open: iComponentsConnections;
 begin
   Result:= Self;
-  FQuery.OpenLoading;
+  if FUseLoading then
+   begin
+     if FMessageLoading <> '' then
+       FQuery.OpenLoading(FMessageLoading)
+     else
+       FQuery.OpenLoading;
+   end else
+    FQuery.Open;
 end;
 
 function TComponentsFiredac.SQL(aValue: string): iComponentsConnections;
 begin
   Result:= Self;
   FQuery.sql.Add(aValue);
+end;
+
+function TComponentsFiredac.UseOpenLoading(
+  aValue: boolean): iComponentsConnections;
+begin
+  Result:= Self;
+  FUseLoading:= aValue;
 end;
 
 end.
