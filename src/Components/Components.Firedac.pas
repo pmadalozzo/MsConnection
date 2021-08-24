@@ -1,7 +1,5 @@
 unit Components.Firedac;
-
 interface
-
 uses
   System.JSON,
   System.Generics.Collections,
@@ -20,12 +18,16 @@ uses
   Firedac.DApt,
   FireDAC.Phys.PGDef,
   FireDAC.Phys.PG,
+  Firedac.Phys.SQLite,
+  Firedac.Phys.SQLiteDef,
+  Firedac.Phys.FBDef,
+  Firedac.Phys.MySQLDef,
+  Firedac.Phys.MySQL,
   FireDAC.VCLUI.Wait,
   FireDAC.Comp.UI,
   System.Classes,
   MsLoading,
   MsConnection.Interfaces;
-
 type
   TComponentsFiredac = class(TInterfacedObject, iComponentsConnections)
     private
@@ -35,7 +37,6 @@ type
       FIndexConn : integer;
       FConnList : TObjectList<TFDConnection>;
       FDriver: TFDPhysPgDriverLink;
-
       FMessageLoading : string;
       FUseLoading : boolean;
     public
@@ -59,51 +60,41 @@ type
       function Isempty : boolean;
       function &End : iMsConnection;
   end;
-
 implementation
-
 uses
   System.AnsiStrings,
   System.SysUtils;
-
 { TComponentsFiredac }
-
 function TComponentsFiredac.&End: iMsConnection;
 begin
   Result:= FParent;
 end;
-
 function TComponentsFiredac.AddParam(aParam: string;
   aValue: TPersistent): iComponentsConnections;
 begin
   Result:= Self;
   FQuery.ParamByName(aParam).Assign(aValue);
 end;
-
 function TComponentsFiredac.AddParam(aParam: string;
   aValue: Variant): iComponentsConnections;
 begin
   Result:= Self;
   FQuery.ParamByName(aParam).Value:= aValue;
 end;
-
 function TComponentsFiredac.Clear: iComponentsConnections;
 begin
   Result:= Self;
   FQuery.SQL.Clear;
 end;
-
 function TComponentsFiredac.Close: iComponentsConnections;
 begin
   Result:= Self;
   FQuery.Close;
 end;
-
 function TComponentsFiredac.Connected: integer;
 begin
   Result:= FIndexConn;
 end;
-
 constructor TComponentsFiredac.Create(Parent : iMsConnection);
 begin
   FParent:= Parent;
@@ -117,7 +108,6 @@ begin
 
     FConnList.Add(TFDConnection.Create(nil));
     FIndexConn := Pred(FConnList.Count);
-
     FConnList.Items[FIndexConn].Params.Add('Server='+FParent.Credential.Host+'');
     FConnList.Items[FIndexConn].Params.add('Port='+FParent.Credential.Port+'');
     FConnList.Items[FIndexConn].Params.Database:= FParent.Credential.Database;
@@ -128,32 +118,27 @@ begin
     if FParent.Credential.RowsetSize > 0 then
       FConnList.Items[FIndexConn].FetchOptions.RowsetSize:= FParent.Credential.RowsetSize;
     FConnList.Items[FIndexConn].Connected;
-
   finally
     FQuery:= TFDQuery.Create(nil);
     FQuery.Connection:= FConnList.Items[FIndexConn];
   end;
 end;
-
 function TComponentsFiredac.DataSet: TDataSet;
 begin
   Result:= FQuery;
 end;
-
 function TComponentsFiredac.DataSource(
   aDataSource: TDataSource): iComponentsConnections;
 begin
   result:= Self;
   aDataSource.DataSet:= FQuery;
 end;
-
 destructor TComponentsFiredac.Destroy;
 begin
   FQuery.DisposeOf;
   FDriver.DisposeOf;
   inherited;
 end;
-
 function TComponentsFiredac.Disconnect(aIndexConn : integer) : iComponentsConnections;
 begin
   Result:= Self;
@@ -161,23 +146,19 @@ begin
   FConnList.Items[aIndexConn].Free;
   FConnList.TrimExcess;
 end;
-
 function TComponentsFiredac.ExecSQL: iComponentsConnections;
 begin
   Result:= Self;
   FQuery.ExecSQL;
 end;
-
 function TComponentsFiredac.IndexConn: integer;
 begin
   Result:= FIndexConn;
 end;
-
 function TComponentsFiredac.Isempty: boolean;
 begin
   result:= FQuery.IsEmpty;
 end;
-
 function TComponentsFiredac.LoadingMessage(
   aValue: string): iComponentsConnections;
 begin
@@ -189,7 +170,6 @@ class function TComponentsFiredac.New(Parent : iMsConnection): iComponentsConnec
 begin
   Result:= Self.Create(Parent);
 end;
-
 function TComponentsFiredac.Open: iComponentsConnections;
 begin
   Result:= Self;
@@ -202,13 +182,11 @@ begin
    end else
     FQuery.Open;
 end;
-
 function TComponentsFiredac.SQL(aValue: string): iComponentsConnections;
 begin
   Result:= Self;
   FQuery.sql.Add(aValue);
 end;
-
 function TComponentsFiredac.UseOpenLoading(
   aValue: boolean): iComponentsConnections;
 begin

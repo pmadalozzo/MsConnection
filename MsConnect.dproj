@@ -67,7 +67,7 @@
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <DCC_CBuilderOutput>All</DCC_CBuilderOutput>
         <SanitizedProjectName>MsConnect</SanitizedProjectName>
-        <DCC_UnitSearchPath>$(DCC_UnitSearchPath);modules\.dcp;modules\.dcu;modules;modules\localcache4d\samples\LocalCache4D;modules\localcache4d\samples\LocalCache4D\Win32\Debug;modules\localcache4d\src;modules\msloading\src;modules\msloading\src\View</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>modules\.dcp;modules\.dcu;modules;modules\localcache4d\samples\LocalCache4D;modules\localcache4d\samples\LocalCache4D\Win32\Debug;modules\localcache4d\src;modules\msloading\src;modules\msloading\src\View;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Locale>1046</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
@@ -125,6 +125,9 @@
         <DCCReference Include="FireDACCommon.dcp"/>
         <DCCReference Include="FireDACPgDriver.dcp"/>
         <DCCReference Include="vclimg.dcp"/>
+        <DCCReference Include="FireDACIBDriver.dcp"/>
+        <DCCReference Include="FireDACMySQLDriver.dcp"/>
+        <DCCReference Include="FireDACSqliteDriver.dcp"/>
         <DCCReference Include="src\Components\Components.Firedac.pas"/>
         <DCCReference Include="src\MsConnection.pas"/>
         <DCCReference Include="src\MsConnection.Interfaces.pas"/>

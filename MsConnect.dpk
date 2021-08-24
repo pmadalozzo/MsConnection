@@ -36,7 +36,10 @@ requires
   FireDACCommonDriver,
   FireDACCommon,
   FireDACPgDriver,
-  vclimg;
+  vclimg,
+  FireDACIBDriver,
+  FireDACMySQLDriver,
+  FireDACSqliteDriver;
 
 contains
   Components.Firedac in 'src\Components\Components.Firedac.pas',
