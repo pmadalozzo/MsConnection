@@ -37,9 +37,7 @@ uses
 
 function TMsConnection.Connection: iComponentsConnections;
 begin
-  if not Assigned(FConnection) then
-    FConnection:= TComponentsFiredac.New(Self);
-
+  FConnection:= TComponentsFiredac.New(Self);
   Result:= FConnection;
 end;
 
