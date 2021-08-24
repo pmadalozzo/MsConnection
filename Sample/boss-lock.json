@@ -12,16 +12,16 @@
 		},
 		"https://github.com/pmadalozzo/msconnection": {
 			"name": "msconnection",
-			"version": "1.0.2",
-			"hash": "bcb7c6356a8266aeb367fdbd0a205ce6",
+			"version": "1.0.3",
+			"hash": "016cbfd32388fef12943a1bd8a3e2eef",
 			"artifacts": {},
 			"failed": false,
 			"changed": false
 		},
 		"https://github.com/pmadalozzo/msloading": {
 			"name": "msloading",
-			"version": "1.0.3",
-			"hash": "d03ddb4cce286755d124d341aeefb07f",
+			"version": "1.0.5",
+			"hash": "fa76070ebf678e4305704271580c915c",
 			"artifacts": {},
 			"failed": false,
 			"changed": false
