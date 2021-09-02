@@ -38,6 +38,7 @@ type
       FConnList : TObjectList<TFDConnection>;
       FDriver: TFDPhysPgDriverLink;
       FMessageLoading : string;
+      FCaminhoDLL : string;
       FUseLoading : boolean;
     public
       constructor Create(Parent : iMsConnection);
@@ -81,6 +82,7 @@ begin
   Result:= Self;
   FQuery.ParamByName(aParam).Value:= aValue;
 end;
+
 function TComponentsFiredac.Clear: iComponentsConnections;
 begin
   Result:= Self;

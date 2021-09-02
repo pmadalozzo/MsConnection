@@ -17,6 +17,7 @@ type
       FDll: string;
       FHost: string;
       FUser: string;
+      FVendorHome: string;
       FLimit : integer;
     public
       Constructor Create(Parent : iMsConnection);
@@ -38,6 +39,8 @@ type
       function Driver : string; overload;
       function RowsetSize(aValue : string) : iMsCredential; overload;
       function RowsetSize : integer; overload;
+      function VendorHome(aValue : string) : iMsCredential; overload;
+      function VendorHome : string; overload;
       function &End : iMsConnection;
   end;
 
@@ -48,7 +51,7 @@ uses
 
 { TMsCredential }
 
-Constructor TMsCredential.Create(Parent : iMsConnection);
+constructor TMsCredential.Create(Parent : iMsConnection);
 begin
   FParent:= Parent;
 end;
@@ -155,6 +158,17 @@ end;
 function TMsCredential.User: string;
 begin
   Result:= FUser;
+end;
+
+function TMsCredential.VendorHome: string;
+begin
+  Result:= FVendorHome;
+end;
+
+function TMsCredential.VendorHome(aValue: string): iMsCredential;
+begin
+  Result:= Self;
+  FVendorHome:= aValue;
 end;
 
 end.

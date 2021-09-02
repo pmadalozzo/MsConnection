@@ -54,6 +54,7 @@ begin
   Result:= Self;
   FQuery.ParamByName(aParam).Value:= aValue;
 end;
+
 function TComponentsUnidac.Clear: iComponentsConnections;
 begin
   result:= self;

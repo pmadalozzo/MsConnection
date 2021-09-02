@@ -36,6 +36,8 @@ type
     function Driver : string; overload;
     function RowsetSize(aValue : string) : iMsCredential; overload;
     function RowsetSize : integer; overload;
+    function VendorHome(aValue : string) : iMsCredential; overload;
+    function VendorHome : string; overload;
   end;
 
   iComponentsConnections = interface
