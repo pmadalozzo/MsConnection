@@ -102,7 +102,12 @@ begin
   FParent:= Parent;
   try
     FDriver:= TFDPhysPgDriverLink.create(nil);
-    FDriver.VendorHome:= GetCurrentDir;
+
+    if FParent.Credential.VendorHome.IsEmpty then
+      FDriver.VendorHome:= GetCurrentDir
+    else
+      FDriver.VendorHome:= FParent.Credential.VendorHome;
+
     fDriver.VendorLib:= FParent.Credential.Dll;
 
     if not Assigned(FConnList) then
